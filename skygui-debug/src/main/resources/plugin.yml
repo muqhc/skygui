@@ -1,0 +1,10 @@
+name: ${pluginName}DebugPlugin
+version: ${version}
+main: ${group}.${packageName}.debug.plugin.${pluginName}DebugPlugin
+api-version: 1.18
+depend:
+  - Skygui
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:1.6.10
+  - org.jetbrains.kotlin:kotlin-reflect:1.6.10
+  - io.github.monun:kommand:2.8.1
