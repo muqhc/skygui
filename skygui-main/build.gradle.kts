@@ -30,15 +30,11 @@ publishing {
         }
 
         maven {
-            name = "central"
+            name = "OSSRH"
 
-            credentials.runCatching {
-                val nexusUsername: String by project
-                val nexusPassword: String by project
-                username = nexusUsername
-                password = nexusPassword
-            }.onFailure {
-                logger.warn("Failed to load nexus credentials, Check the gradle.properties")
+            credentials {
+                username = project.properties["ossrhUsername"]!! as String
+                password = project.properties["ossrhPassword"]!! as String
             }
 
             url = uri(
@@ -53,14 +49,16 @@ publishing {
 
     publications {
         create<MavenPublication>(rootProject.name) {
-            artifactId = project.name
+            groupId = properties["group"]!! as String
+            artifactId = rootProject.name
+
             from(components["java"])
             artifact(tasks["sourcesJar"])
             artifact(tasks["dokkaJar"])
 
             pom {
-                name.set(project.name)
-                description.set("Blah blah")
+                name.set(rootProject.name)
+                description.set("gui on air for bukkit server")
                 url.set("https://github.com/muqhc/${rootProject.name}")
 
                 licenses {
@@ -93,6 +91,6 @@ publishing {
 
 signing {
     isRequired = true
-    sign(tasks.jar.get(), tasks["sourcesJar"], tasks["dokkaJar"])
+    useGpgCmd()
     sign(publishing.publications[rootProject.name])
 }
