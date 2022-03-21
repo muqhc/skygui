@@ -12,15 +12,12 @@ open class SimpleSkyguiManager: SkyguiManager {
         @EventHandler
         fun onPlayerInteract(event: PlayerInteractEvent) {
             displays.forEach { display ->
-                display.rayTrace(event.player.eyeLocation).let { traceResult ->
-                    display.components.forEach { component ->
-                        if (component.isPointIn(traceResult.hitLocationOnDisplay))
-                            component.onClicked(SkyDisplayInteractEvent(
-                                event,
-                                display,
-                                traceResult
-                            ))
-                    }
+                display.components.forEach { component ->
+                    component.click(SkyDisplayInteractEvent(
+                        event,
+                        display,
+                        display.rayTrace(event.player.eyeLocation)
+                    ))
                 }
             }
         }

@@ -1,6 +1,5 @@
 package io.github.muqhc.skygui.debug.plugin.component
 
-import com.destroystokyo.paper.ParticleBuilder
 import io.github.muqhc.skygui.SkyDisplay
 import io.github.muqhc.skygui.component.SkyComponent
 import io.github.muqhc.skygui.component.SquareRenderComponent
@@ -28,7 +27,7 @@ class MeowPiano(center: Point): SkyComponent {
     }
 
     override fun onClicked(event: SkyDisplayInteractEvent) {
-        notes.forEach { if (it.isPointIn(event.traceResult.hitLocationOnDisplay)) it.onClicked(event) }
+        notes.forEach { it.click(event) }
     }
 
     class MeowNote(center: Point, val noteSet: NoteSet): SquareRenderComponent {
