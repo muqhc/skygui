@@ -22,7 +22,7 @@ subprojects {
     }
 
     dependencies {
-        implementation("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
+        implementation("io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
 
         implementation(kotlin("stdlib"))
     }
