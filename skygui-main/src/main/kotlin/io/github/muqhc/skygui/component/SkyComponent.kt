@@ -12,7 +12,7 @@ interface SkyComponent {
     val point2: Point
 
     fun click(event: SkyDisplayInteractEvent) {
-        if (isPointIn(event.traceResult.hitLocationOnDisplay)) onClicked(event)
+        onClicked(event)
     }
 
     fun onClicked(event: SkyDisplayInteractEvent) {}

@@ -5,7 +5,7 @@ import io.github.muqhc.skygui.util.Point
 import io.github.muqhc.skygui.util.Vector2D
 import org.bukkit.Particle
 
-interface SquareRenderComponent : SkyComponent {
+interface SquareParticleRenderComponent : SkyComponent {
     val renderMaterial: Particle
     fun getParticleData(): Any? = null
     override fun render(display: SkyDisplay) {

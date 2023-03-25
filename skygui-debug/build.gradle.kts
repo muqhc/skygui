@@ -1,12 +1,13 @@
 repositories {
     mavenLocal()
+    mavenCentral()
 }
 
 val projectMain = project(":${rootProject.name}-main")
 
 dependencies {
     implementation(projectMain)
-    implementation("io.github.monun:kommand-api:2.8.1")
+    implementation("io.github.monun:kommand-api:3.1.2")
 }
 
 val pluginName = rootProject.name.split('-').joinToString("") { it.capitalize() }

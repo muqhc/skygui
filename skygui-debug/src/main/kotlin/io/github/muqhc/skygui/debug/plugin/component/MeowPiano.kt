@@ -2,7 +2,7 @@ package io.github.muqhc.skygui.debug.plugin.component
 
 import io.github.muqhc.skygui.SkyDisplay
 import io.github.muqhc.skygui.component.SkyComponent
-import io.github.muqhc.skygui.component.SquareRenderComponent
+import io.github.muqhc.skygui.component.SquareParticleRenderComponent
 import io.github.muqhc.skygui.event.SkyDisplayInteractEvent
 import io.github.muqhc.skygui.util.Point
 import org.bukkit.Color
@@ -27,10 +27,12 @@ class MeowPiano(center: Point): SkyComponent {
     }
 
     override fun onClicked(event: SkyDisplayInteractEvent) {
-        notes.forEach { it.click(event) }
+        notes.forEach {
+            if (it.isPointIn(event.traceResult.hitLocationOnDisplay)) it.click(event)
+        }
     }
 
-    class MeowNote(center: Point, val noteSet: NoteSet): SquareRenderComponent {
+    class MeowNote(center: Point, val noteSet: NoteSet): SquareParticleRenderComponent {
         override val point1: Point = Point(center.x+0.47,center.y+0.47)
         override val point2: Point = Point(center.x-0.47,center.y-0.47)
 

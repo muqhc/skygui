@@ -1,9 +1,11 @@
 package io.github.muqhc.skygui
 
 import io.github.muqhc.skygui.component.SkyComponent
+import io.github.muqhc.skygui.event.SkyDisplayInteractEvent
 import io.github.muqhc.skygui.util.Point
 import io.github.muqhc.skygui.util.SkyRayTraceResult
 import org.bukkit.Location
+import org.bukkit.entity.Entity
 import org.bukkit.util.Vector
 import kotlin.math.PI
 import kotlin.math.cos
@@ -62,6 +64,7 @@ interface SkyDisplay {
             }
         }
         override val hitLocationOnDisplay: Point = getLocationOnDisplay(hitLocation.toVector())
+        override val isFaceToFace: Boolean = normalVector.angle(Vector(dirX, dirY, dirZ)) > (PI/2)
     }
     
     fun rayTrace(location: Vector, direction: Vector) = rayTrace(
@@ -76,4 +79,12 @@ interface SkyDisplay {
     fun rayTrace(location: Location, direction: Vector) = rayTrace(location.toVector(), direction)
 
     fun rayTrace(locationWithDirection: Location) = rayTrace(locationWithDirection,locationWithDirection.direction)
+
+    fun click(event: SkyDisplayInteractEvent) {
+        if (event.traceResult.isFaceToFace) components.forEach {
+            if (it.isPointIn(event.traceResult.hitLocationOnDisplay)) it.click(event)
+        }
+    }
+
+
 }
