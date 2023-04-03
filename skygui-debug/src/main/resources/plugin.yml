@@ -4,6 +4,4 @@ main: ${group}.${packageName}.debug.plugin.${pluginName}DebugPlugin
 depend:
   - Skygui
 libraries:
-  - org.jetbrains.kotlin:kotlin-stdlib:1.8.0
-  - org.jetbrains.kotlin:kotlin-reflect:1.8.0
   - io.github.monun:kommand-core:3.1.3
