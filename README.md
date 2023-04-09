@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.muqhc:skygui:0.3.1")
+    implementation("io.github.muqhc:skygui:0.3.2")
 }
 ```
 
