@@ -24,7 +24,7 @@ class SkyDisplayInteractEvent(
     minecraftEvent.clickedBlock,
     minecraftEvent.blockFace,
     minecraftEvent.hand,
-    minecraftEvent.interactionPoint
+    minecraftEvent.clickedPosition
 ) {
     val originEvent: PlayerInteractEvent = minecraftEvent
 }
